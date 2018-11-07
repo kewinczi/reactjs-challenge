@@ -5,13 +5,21 @@ export function fetchPokedexSucces(pokemons) {
     }
 }
 
+export function getLinkHeader(link) {
+    return {
+        type: 'GET_LINK_HEADER',
+        link
+    }
+}
+
 export function fetchPokedex(url) {
     return dispatch => {
-        console.log('Loading')
         fetch(url)
-            .then(response => response.json())
+            .then(response => {
+                dispatch(getLinkHeader(response.headers.get('Link')));
+                return response.json()
+            })
             .then(result => {
-                console.log('Fetched');
                 dispatch(fetchPokedexSucces(result));
             });
     }

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { pokemons } from './pokedex-reducers'
+import { pokemons, link } from './pokedex-reducers'
 
 export default combineReducers({
-    pokemons
+    pokemons,
+    link
 });

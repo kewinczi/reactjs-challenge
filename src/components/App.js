@@ -23,7 +23,7 @@ class App extends Component {
             }
           </div>
         </div>
-        <PageLink fetchData={this.props.fetchData} />
+        <PageLink fetchData={this.props.fetchData} link={this.props.link}/>
       </div>
     );
   }
@@ -31,7 +31,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    pokemons: state.pokemons
+    pokemons: state.pokemons,
+    link: state.link
   }
 }
 
