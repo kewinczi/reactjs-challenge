@@ -7,10 +7,10 @@ export function pokemons(state = [], action) {
     }
 }
 
-export function link(state = '', action) {
+export function header(state = '', action) {
     switch (action.type) {
         case 'GET_LINK_HEADER':
-            return action.link;
+            return action.header;
         default:
             return state;
     }

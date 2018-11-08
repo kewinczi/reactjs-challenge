@@ -10,7 +10,7 @@ class Pokemon extends React.Component {
                         <div className="card-body">
                         <img className="card-img-top" src={pokemon.img} alt={pokemon.name}/>
                             <h6>{`#${pokemon.num} ${pokemon.name}`}</h6>
-                            <p>{pokemon.type.map((element, index) => <span style={{'background-color':`${colors[element]}`}}key={`${pokemon.id}${element}`} className="badge badge-primary m-1">{element}</span>)}</p>
+                            <p>{pokemon.type.map((element, index) => <span style={{'backgroundColor':`${colors[element]}`}}key={`${pokemon.id}${element}`} className="badge badge-primary m-1">{element}</span>)}</p>
                         </div>  
                     </div>
             </div>

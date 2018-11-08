@@ -7,7 +7,7 @@ import { fetchPokedex } from '../actions/pokedex-actions'
 class App extends Component {
 
   componentDidMount() {
-    const url = "http://localhost:3000/pokemon?_page=1"
+    const url = "http://localhost:3000/pokemon?_page=1&_limit=12"
     this.props.fetchData(url)
   }
 
@@ -23,7 +23,7 @@ class App extends Component {
             }
           </div>
         </div>
-        <PageLink fetchData={this.props.fetchData} link={this.props.link}/>
+        <PageLink fetchData={this.props.fetchData} header={this.props.header}/>
       </div>
     );
   }
@@ -32,7 +32,10 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     pokemons: state.pokemons,
-    link: state.link
+    header: {
+      link: state.header.link,
+      totalCount: state.header.totalCount
+    }
   }
 }
 

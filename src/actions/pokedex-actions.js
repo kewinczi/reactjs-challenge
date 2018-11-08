@@ -5,10 +5,13 @@ export function fetchPokedexSucces(pokemons) {
     }
 }
 
-export function getLinkHeader(link) {
+export function getHeader(link, totalCount) {
     return {
         type: 'GET_LINK_HEADER',
-        link
+        header: {
+            link,
+            totalCount
+        }
     }
 }
 
@@ -16,7 +19,9 @@ export function fetchPokedex(url) {
     return dispatch => {
         fetch(url)
             .then(response => {
-                dispatch(getLinkHeader(response.headers.get('Link')));
+                const link = response.headers.get('Link');
+                const totalCount = response.headers.get('X-Total-Count');
+                dispatch(getHeader(link, totalCount));
                 return response.json()
             })
             .then(result => {
