@@ -12,6 +12,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.isLoading)
     return (
       <div>
         <div className="container">
@@ -21,6 +22,7 @@ class App extends Component {
                 .keys(this.props.pokemons)
                 .map(key => <Pokemon key={key} pokemon={this.props.pokemons[key]} />)
             }
+            {this.props.isLoading ? (<p>Loading…</p>) : (<div></div>)}
           </div>
         </div>
         <PageLink fetchData={this.props.fetchData} header={this.props.header}/>
@@ -35,7 +37,8 @@ const mapStateToProps = state => {
     header: {
       link: state.header.link,
       totalCount: state.header.totalCount
-    }
+    },
+    isLoading: state.isLoading
   }
 }
 
