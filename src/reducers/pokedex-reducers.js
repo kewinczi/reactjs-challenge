@@ -16,6 +16,15 @@ export function isLoading(state = false, action) {
     }
 }
 
+export function isError(state = false, action) {
+    switch (action.type) {
+        case 'FETCH_POKEDEX_ERROR':
+            return action.isError;
+        default:
+            return state;
+    }
+}
+
 export function currentPage(state = 1, action) {
     switch (action.type) {
         case 'GET_CURRENT_PAGE':

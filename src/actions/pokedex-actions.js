@@ -14,6 +14,13 @@ export function fetchPokedexLoading(bool) {
     }
 }
 
+export function fetchPokedexError(bool) {
+    return {
+        type: 'FETCH_POKEDEX_ERROR',
+        isError: bool
+    }
+}
+
 export function getHeader(link, totalCount) {
     return {
         type: 'GET_LINK_HEADER',
@@ -46,6 +53,9 @@ export function fetchPokedex(page) {
             })
             .then(result => {
                 dispatch(fetchPokedexSucces(result));
+            })
+            .catch(() => {
+                dispatch(fetchPokedexError(true))
             });
     }
 }

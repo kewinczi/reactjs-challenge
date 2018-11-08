@@ -20,7 +20,8 @@ class App extends Component {
                 .keys(this.props.pokemons)
                 .map(key => <Pokemon key={key} pokemon={this.props.pokemons[key]} />)
             }
-            {this.props.isLoading ? (<p>Loading…</p>) : (<div></div>)}
+            {this.props.isLoading && !this.props.isError ? (<p>Loading…</p>) : (<div></div>)}
+            {this.props.isError ? (<p>Error!</p>):<div></div>}
           </div>
         </div>
         <PageLink fetchData={this.props.fetchData} header={this.props.header} currentPage={this.props.currentPage}/>
@@ -37,6 +38,7 @@ const mapStateToProps = state => {
       totalCount: state.header.totalCount
     },
     isLoading: state.isLoading,
+    isError: state.isError,
     currentPage: state.currentPage
   }
 }
