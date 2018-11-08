@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { pokemons, header, isLoading } from './pokedex-reducers'
+import { pokemons, header, isLoading, currentPage } from './pokedex-reducers'
 
 export default combineReducers({
     pokemons,
     header,
-    isLoading
+    isLoading, 
+    currentPage
 });

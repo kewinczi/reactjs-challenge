@@ -7,12 +7,10 @@ import { fetchPokedex } from '../actions/pokedex-actions'
 class App extends Component {
 
   componentDidMount() {
-    const url = "http://localhost:3000/pokemon?_page=1&_limit=12"
-    this.props.fetchData(url)
+    this.props.fetchData(1)
   }
 
   render() {
-    console.log(this.props.isLoading)
     return (
       <div>
         <div className="container">
@@ -25,7 +23,7 @@ class App extends Component {
             {this.props.isLoading ? (<p>Loading…</p>) : (<div></div>)}
           </div>
         </div>
-        <PageLink fetchData={this.props.fetchData} header={this.props.header}/>
+        <PageLink fetchData={this.props.fetchData} header={this.props.header} currentPage={this.props.currentPage}/>
       </div>
     );
   }
@@ -38,13 +36,14 @@ const mapStateToProps = state => {
       link: state.header.link,
       totalCount: state.header.totalCount
     },
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    currentPage: state.currentPage
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: (url) => dispatch(fetchPokedex(url))
+    fetchData: (page) => dispatch(fetchPokedex(page))
   }
 }
 

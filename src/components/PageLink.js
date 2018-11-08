@@ -2,21 +2,29 @@ import React from 'react';
 
 class PageLink extends React.Component {
     render() {
-        const { header, fetchData } = this.props;
-        const pageLimit = 12;
+        const { header, fetchData, currentPage } = this.props;
         const totalItems = header.totalCount
-        const last = Math.ceil(totalItems/pageLimit);
-        console.log(totalItems);
-        const pages = [...Array(last).keys()].map(key => {
+        const lastPage = Math.ceil(totalItems/12);
+        const isLastPage = !header.link.includes('next');
+        const isFirstPage = !header.link.includes('prev')
+        const pages = [...Array(lastPage).keys()].map(key => {
             key++;
-            const url = `http://localhost:3000/pokemon?_page=${key}&_limit=${pageLimit}`
-            return <li key={`page${key}`} className="page-item"><a className="page-link" onClick={() => fetchData(url)}>{key}</a></li>
+            return (
+                <li key={`page${key}`} className="page-item">
+                    <a className="page-link" onClick={() => fetchData(key)}>{key}</a>
+                </li>
+            )
         })
-        console.log(pages);
         return (
             <nav className="d-flex justify-content-center">
                 <ul className="pagination">
+                    <li className={`page-item ${isFirstPage ? 'disabled' : ''}`}>
+                        <a className="page-link" onClick={() => fetchData(currentPage-1)}>Previous</a>
+                    </li>
                     {pages}
+                    <li className={`page-item ${isLastPage ? 'disabled' : ''}`}>
+                        <a className="page-link" onClick={() => fetchData(currentPage+1)}>Next</a>
+                    </li>
                 </ul>
             </nav>
         );

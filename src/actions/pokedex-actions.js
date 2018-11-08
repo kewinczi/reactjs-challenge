@@ -22,8 +22,18 @@ export function getHeader(link, totalCount) {
     }
 }
 
-export function fetchPokedex(url) {
+export function setCurrentPage(page) {
+    return {
+        type: 'GET_CURRENT_PAGE',
+        page
+    }
+}
+
+export function fetchPokedex(page) {
+    const limit = 12;
+    const url = `http://localhost:3000/pokemon?_page=${page}&_limit=${limit}`
     return dispatch => {
+        dispatch(setCurrentPage(page));
         dispatch(fetchPokedexLoading(true))
         fetch(url)
             .then(response => {
