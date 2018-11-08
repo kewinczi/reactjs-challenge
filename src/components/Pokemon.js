@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from '../constants';
+import { colorDictionary as colors } from '../constants';
 
 class Pokemon extends React.Component {
     render() {

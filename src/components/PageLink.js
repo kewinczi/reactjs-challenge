@@ -1,10 +1,11 @@
 import React from 'react';
+import { itemsPerPageLimit } from '../constants'
 
 class PageLink extends React.Component {
     render() {
         const { header, fetchData, currentPage } = this.props;
         const totalItems = header.totalCount
-        const lastPage = Math.ceil(totalItems/12);
+        const lastPage = Math.ceil(totalItems/itemsPerPageLimit);
         const isLastPage = !header.link.includes('next');
         const isFirstPage = !header.link.includes('prev')
         const pages = [...Array(lastPage).keys()].map(key => {

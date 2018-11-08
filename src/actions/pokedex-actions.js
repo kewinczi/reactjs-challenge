@@ -1,3 +1,5 @@
+import { itemsPerPageLimit as limit } from '../constants'
+
 export function fetchPokedexSucces(pokemons) {
     return {
         type: 'FETCH_POKEDEX_SUCCESS',
@@ -30,7 +32,6 @@ export function setCurrentPage(page) {
 }
 
 export function fetchPokedex(page) {
-    const limit = 12;
     const url = `http://localhost:3000/pokemon?_page=${page}&_limit=${limit}`
     return dispatch => {
         dispatch(setCurrentPage(page));

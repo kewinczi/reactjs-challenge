@@ -1,4 +1,4 @@
-export const colors = {
+export const colorDictionary = {
     Grass: 'green',
     Poison: 'purple',
     Fire: 'red',
@@ -13,3 +13,5 @@ export const colors = {
     Rock: 'darkgray',
     Ice: 'lightblue'
 }
+
+export const itemsPerPageLimit = 12;
