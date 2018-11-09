@@ -1,3 +1,18 @@
+# Reactjs challenge
+
+## Instructions
+
+You should first run PokemonAPI:
+
+### `json-server https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json`
+
+And then run the app in development mode:
+
+### `npm start`
+
+Choose 'yes' to run app on another port.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
