@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatKeyString, formatEvolutionDetail } from '../helpers';
 
 class PokemonDetails extends React.Component {
     render() {
@@ -10,12 +11,20 @@ class PokemonDetails extends React.Component {
             switch (key) {
                 case 'img':
                     detail = <li key={key}><img src={`${value}`} alt="Image"></img></li>;
-                    pokemonDetails = [...pokemonDetails, detail]; 
-                    break;        
+                    break;
+                case 'next_evolution':
+                case 'prev_evolution':
+                    detail = (
+                        <li key={key}>
+                            {formatKeyString(key)}:
+                            <ul>{[formatEvolutionDetail(value)]}</ul>
+                        </li>
+                    );
+                    break; 
                 default:
-                    detail = <li key={key}>{`${key.charAt(0).toUpperCase()+key.slice(1)}: ${value}`}</li>
-                    pokemonDetails = [...pokemonDetails, detail];         
+                    detail = <li key={key}>{`${formatKeyString(key)}: ${value}`}</li>        
             }
+            pokemonDetails = [...pokemonDetails, detail];
         });
         return(
             <div className="container">
@@ -24,7 +33,9 @@ class PokemonDetails extends React.Component {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h4 className="modal-title">{chosenPokemon.name}</h4>
-                        <button type="button" className="close" data-dismiss="modal">&times;</button>
+                        <button type="button" className="close" data-dismiss="modal">
+                            &times;
+                        </button>
                     </div>
                     <div className="modal-body text-left">
                     <ul className="list-unstyled">{pokemonDetails}</ul>
