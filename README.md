@@ -4,11 +4,15 @@
 
 You should first run PokemonAPI:
 
-### `json-server https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json`
+```bash
+json-server https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json
+```
 
-And then run the app in development mode:
+And then you can run the app in development mode:
 
-### `npm start`
+```bash
+npm start
+```
 
 Choose 'yes' to run app on another port.
 
