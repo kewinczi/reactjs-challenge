@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Pokemon from './Pokemon';
 import PageLink from './PageLink';
 import { connect } from 'react-redux';
-import { fetchPokedex } from '../actions/pokedex-actions'
+import { fetchPokedex, setChosenPokemon } from '../actions/pokedex-actions'
+import PokemonDetails from './PokemonDetails';
 
 class App extends Component {
 
@@ -18,10 +19,19 @@ class App extends Component {
             {
               Object
                 .keys(this.props.pokemons)
-                .map(key => <Pokemon key={key} pokemon={this.props.pokemons[key]} />)
+                .map(key => { return (
+                  <Pokemon 
+                    key={key} 
+                    pokemon={this.props.pokemons[key]} 
+                    setChosenPokemon={this.props.setChosenPokemon}
+                  />
+                )})
             }
-            {this.props.isLoading && !this.props.isError ? (<p>Loading…</p>) : (<div></div>)}
-            {this.props.isError ? (<p>Error!</p>):<div></div>}
+            {
+              this.props.isLoading && !this.props.isError ? 
+              <p>Loading…</p> : <PokemonDetails chosenPokemon={this.props.chosenPokemon}/>
+            }
+            {this.props.isError ? <p>Error!</p> :<div></div>}
           </div>
         </div>
         <PageLink fetchData={this.props.fetchData} header={this.props.header} currentPage={this.props.currentPage}/>
@@ -39,13 +49,15 @@ const mapStateToProps = state => {
     },
     isLoading: state.isLoading,
     isError: state.isError,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    chosenPokemon: state.chosenPokemon
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: (page) => dispatch(fetchPokedex(page))
+    fetchData: (page) => dispatch(fetchPokedex(page)),
+    setChosenPokemon: (pokemon) => dispatch(setChosenPokemon(pokemon))
   }
 }
 

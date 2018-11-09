@@ -33,8 +33,15 @@ export function getHeader(link, totalCount) {
 
 export function setCurrentPage(page) {
     return {
-        type: 'GET_CURRENT_PAGE',
+        type: 'SET_CURRENT_PAGE',
         page
+    }
+}
+
+export function setChosenPokemon(pokemon) {
+    return {
+        type: 'SET_CHOSEN_POKEMON',
+        pokemon
     }
 }
 

@@ -27,8 +27,17 @@ export function isError(state = false, action) {
 
 export function currentPage(state = 1, action) {
     switch (action.type) {
-        case 'GET_CURRENT_PAGE':
+        case 'SET_CURRENT_PAGE':
             return action.page;
+        default:
+            return state;
+    }
+}
+
+export function chosenPokemon(state = {}, action) {
+    switch (action.type) {
+        case 'SET_CHOSEN_POKEMON':
+            return action.pokemon;
         default:
             return state;
     }
